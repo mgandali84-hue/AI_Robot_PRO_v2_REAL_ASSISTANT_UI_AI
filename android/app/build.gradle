@@ -4,21 +4,35 @@ plugins {
 }
 
 android {
-    namespace = "com.airobot.pro"
-    compileSdk = 36
+    namespace "com.example.your_app_name" // Ensure your app's namespace is present
+    compileSdk 34 // Or your current SDK version
+
+    // 1. Fix NDK Version
+    ndkVersion "28.2.13676358"
 
     defaultConfig {
-        applicationId = "com.airobot.pro"
-        minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "2.0.0"
+        // ... your defaultConfig settings
     }
 
-    buildTypes {
-        release {
-            signingConfig = signingConfigs.debug
-        }
+    // 2. Fix Java & Kotlin Target Compatibility Mismatch
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+buildscript {
+    ext.kotlin_version = '1.9.22' // Ensure a modern version of Kotlin (e.g., 1.9.x)
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1' // Or your AGP version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
