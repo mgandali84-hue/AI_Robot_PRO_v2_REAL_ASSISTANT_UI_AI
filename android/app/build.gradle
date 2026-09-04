@@ -1,3 +1,14 @@
+buildscript {
+    ext.kotlin_version = '1.9.22' // Ensure a modern version of Kotlin (e.g., 1.9.x)
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1' // Or your AGP version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
 plugins {
     id "com.android.application"
     id "dev.flutter.flutter-gradle-plugin"
@@ -24,17 +35,7 @@ android {
         jvmTarget = '17'
     }
 }
-buildscript {
-    ext.kotlin_version = '1.9.22' // Ensure a modern version of Kotlin (e.g., 1.9.x)
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.1' // Or your AGP version
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
+
 
 flutter {
     source = "../.."
